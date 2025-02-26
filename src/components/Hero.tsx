@@ -72,7 +72,7 @@ export function Hero() {
           </div>
           
           <div className="flex justify-center w-1/3 px-4 sm:px-6 max-w-[256px] mx-auto mt-6 sm:mt-8">
-            <ShimmerButton onClick={() => {}}>
+            <ShimmerButton onClick={() => {}} className="flex justify-center w-1/3 px-4 sm:px-6 max-w-[256px] mx-auto mt-6 sm:mt-8 text-sm">
               <span>Join Waitlist</span>
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white/90" /> {/* Changed from Sparkle to ArrowRight */}
             </ShimmerButton>
