@@ -7,12 +7,10 @@ import { ShimmerButton } from "@/components/ui/shimmer-button";
 import AuroraBackground from "@/components/ui/aurora-background";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
-
 export function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const isMobile = useIsMobile();
   const titles = useMemo(() => ["engages", "converts", "impresses", "stands out", "educates"], []);
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (titleNumber === titles.length - 1) {
@@ -23,21 +21,15 @@ export function Hero() {
     }, 2000);
     return () => clearTimeout(timeoutId);
   }, [titleNumber, titles.length]);
-
-  return (
-    <div className="w-full relative">
+  return <div className="w-full relative">
       {/* Animated gradient background */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-purple-50/90 via-white to-blue-50/90"
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%"],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
+      <motion.div className="absolute inset-0 bg-gradient-to-br from-purple-50/90 via-white to-blue-50/90" animate={{
+      backgroundPosition: ["0% 0%", "100% 100%"]
+    }} transition={{
+      duration: 20,
+      repeat: Infinity,
+      repeatType: "reverse"
+    }} />
 
       {/* Decorative elements */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-r from-purple-200/20 to-blue-200/20 rounded-full blur-3xl" />
@@ -51,37 +43,25 @@ export function Hero() {
                 Property Content that
               </span>
               <span className="relative flex w-full justify-center h-[2em] sm:h-[1.8em] md:h-[1.6em] lg:h-[1.4em] overflow-hidden mt-1 sm:mt-2">
-                {titles.map((title, index) => (
-                  <motion.span 
-                    key={index}
-                    className={cn(
-                      "absolute font-playfair tracking-tight bg-clip-text text-transparent",
-                      "bg-gradient-to-r from-purple-700 via-blue-700 to-cyan-700",
-                      titleNumber === index && "text-[3rem] sm:text-7xl md:text-8xl lg:text-9xl"
-                    )}
-                    initial={{
-                      opacity: 0,
-                      y: isMobile ? 25 : 50,
-                      scale: 0.9
-                    }}
-                    animate={titleNumber === index ? {
-                      y: 0,
-                      opacity: 1,
-                      scale: 1
-                    } : {
-                      y: titleNumber > index ? (isMobile ? -25 : -50) : (isMobile ? 25 : 50),
-                      opacity: 0,
-                      scale: 0.9
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: isMobile ? 120 : 100,
-                      damping: isMobile ? 18 : 15
-                    }}
-                  >
+                {titles.map((title, index) => <motion.span key={index} className={cn("absolute font-playfair tracking-tight bg-clip-text text-transparent", "bg-gradient-to-r from-purple-700 via-blue-700 to-cyan-700", titleNumber === index && "text-[3rem] sm:text-7xl md:text-8xl lg:text-9xl")} initial={{
+                opacity: 0,
+                y: isMobile ? 25 : 50,
+                scale: 0.9
+              }} animate={titleNumber === index ? {
+                y: 0,
+                opacity: 1,
+                scale: 1
+              } : {
+                y: titleNumber > index ? isMobile ? -25 : -50 : isMobile ? 25 : 50,
+                opacity: 0,
+                scale: 0.9
+              }} transition={{
+                type: "spring",
+                stiffness: isMobile ? 120 : 100,
+                damping: isMobile ? 18 : 15
+              }}>
                     {title}
-                  </motion.span>
-                ))}
+                  </motion.span>)}
               </span>
             </h1>
 
@@ -91,18 +71,14 @@ export function Hero() {
             </p>
           </div>
           
-          <div className="flex justify-center w-full px-4 sm:px-6 max-w-lg mx-auto mt-6 sm:mt-8">
-            <ShimmerButton 
-              onClick={() => {}}
-            >
+          <div className="flex justify-center w-1/3 px-4 sm:px-6 max-w-[256px] mx-auto mt-6 sm:mt-8">
+            <ShimmerButton onClick={() => {}}>
               <span>Join Waitlist</span>
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white/90" /> {/* Changed from Sparkle to ArrowRight */}
             </ShimmerButton>
           </div>
         </div>
       </AuroraBackground>
-    </div>
-  );
+    </div>;
 }
-
 export default Hero;
