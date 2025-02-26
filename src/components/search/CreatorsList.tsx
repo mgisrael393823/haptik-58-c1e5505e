@@ -53,8 +53,8 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
 
   if (isMobile) {
     return (
-      <div>
-        <div className="mb-6 w-full">
+      <div className="w-full -mx-3 sm:-mx-6 lg:-mx-8">
+        <div className="px-3 sm:px-6 lg:px-8 mb-6 w-full">
           <SortMenu 
             options={sortOptions}
             onSort={onSort}
@@ -66,10 +66,10 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
           <div className="sticky top-0 flex h-[80vh] items-center overflow-hidden">
             <motion.div
               style={{ x }}
-              className="flex gap-4 px-4"
+              className="flex gap-4 pl-3 sm:pl-6 lg:pl-8"
             >
               {creators.map((creator) => (
-                <div key={creator.name} className="w-[300px] flex-shrink-0">
+                <div key={creator.name} className="w-[85vw] max-w-[400px] flex-shrink-0">
                   <CreatorCard
                     creator={creator}
                     onImageLoad={onImageLoad}
