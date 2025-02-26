@@ -35,12 +35,13 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const targetRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: targetRef,
+    target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["5%", "-95%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(creators.length - 1) * 100}%`]);
 
   const sortOptions = [
     { label: 'Rating', value: 'rating' },
@@ -48,8 +49,6 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
     { label: 'Price: High to Low', value: 'price_desc' },
     { label: 'Distance', value: 'distance' }
   ];
-
-  console.log('Number of creators:', creators.length);
 
   if (isMobile) {
     return (
@@ -62,11 +61,13 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
           />
         </div>
 
-        <div ref={targetRef} className="relative min-h-[120vh]">
-          <div className="sticky top-0 flex h-[80vh] items-center overflow-hidden">
+        <div ref={targetRef} className="overflow-hidden">
+          <div ref={containerRef} className="relative">
             <motion.div
-              style={{ x }}
-              className="flex gap-4 pl-6"
+              drag="x"
+              dragConstraints={containerRef}
+              dragElastic={0.2}
+              className="flex gap-4 pl-6 touch-pan-x"
             >
               {creators.map((creator) => (
                 <div key={creator.name} className="w-[85vw] max-w-[400px] flex-shrink-0">
