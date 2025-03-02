@@ -63,3 +63,4 @@ export const CreatorRating: React.FC<CreatorRatingProps> = ({ rating, reviews, n
     </div>
   );
 };
+

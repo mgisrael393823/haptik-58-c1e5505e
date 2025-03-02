@@ -1,15 +1,13 @@
-
 import React from 'react';
-import { Card, CardContent } from '../ui/card';
+import { Card, CardHeader, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
-import { MapPin, Star, CheckCircle, ArrowRight } from 'lucide-react';
+import { MapPin, Star, Image, CheckCircle, Sparkle, ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { CreatorRating } from './CreatorRating';
 import { GlowDialog } from '../ui/glow-dialog';
 import { ShimmerButton } from '../ui/shimmer-button';
-import { Badge } from '../ui/badge';
 
 interface Creator {
   name: string;
@@ -86,80 +84,85 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
   return (
     <div className="group select-text">
       <Card className="overflow-hidden h-full will-change-transform transition-all duration-300 hover:translate-y-[-2px]">
-        <CardContent className="p-3">
-          <div className="flex items-start gap-3 mb-3">
-            <div className="w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden">
-              <img 
-                ref={imageRef}
-                src={getImageSource()}
-                alt={creator.name} 
-                className="w-full h-full object-cover"
-                onLoad={handleImageLoad}
-                onError={handleImageError}
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <div className="flex items-center gap-1 mb-1">
-                <h3 className="font-heading text-xs font-semibold">{creator.name}</h3>
-                <Badge variant="outline" className="ml-1 text-[8px] px-1 py-0 h-4">
-                  Verified
-                </Badge>
+        <div className="relative">
+          <div className="absolute top-3 right-3 z-10">
+            <span className="
+              px-2.5 py-1 
+              text-xs sm:text-sm font-medium 
+              bg-white/90 backdrop-blur-sm 
+              text-gray-900 
+              rounded-full 
+              shadow-sm 
+              border border-white/20
+              transition-all duration-200
+              group-hover:shadow-md
+            ">
+              From ${creator.price}
+            </span>
+          </div>
+
+          <div className="relative aspect-[4/3]">
+            <img 
+              ref={imageRef}
+              src={getImageSource()}
+              alt={creator.name} 
+              className={cn(
+                "w-full h-full object-cover object-center transition-opacity duration-300",
+                !loadedImages.has(creator.image) && "opacity-0"
+              )}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
+            
+            <div className="absolute bottom-3 left-3 text-white select-text">
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold text-lg sm:text-xl">{creator.name}</h3>
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
               </div>
-              <p className="text-[10px] text-muted-foreground">
-                {creator.location}
+              <div className="flex items-center gap-1.5 mt-1">
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90" />
+                <span className="text-xs sm:text-sm text-white/90">{creator.location}</span>
+              </div>
+              <p className="text-xs sm:text-sm text-white/90 mt-1">
+                {creator.services.join(" • ")}
               </p>
-              <div className="flex items-center gap-1 mt-1">
-                <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
-                <span className="text-[10px] font-medium">{creator.rating} ({creator.reviews} reviews)</span>
-              </div>
             </div>
           </div>
           
-          <div className="grid grid-cols-3 gap-1 mb-3">
-            {creator.workExamples.slice(0, 3).map((example, i) => (
-              <div key={i} className="aspect-square bg-gray-200 rounded-md overflow-hidden">
-                <img 
-                  src={example} 
-                  alt={`${creator.name} work example ${i}`} 
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+          <div className="p-4 sm:p-5">
+            <div className="space-y-4 sm:space-y-5">
+              <div className="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                <div className="flex flex-nowrap gap-2 pb-1">
+                  {tags.map((tag, index) => (
+                    <button
+                      key={index}
+                      className={cn(
+                        "text-xs px-2 py-1 rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap",
+                        getTagStyle(tag)
+                      )}
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
               </div>
-            ))}
-            {Array(Math.max(0, 3 - creator.workExamples.length)).fill(0).map((_, i) => (
-              <div key={`placeholder-${i}`} className="aspect-square bg-gray-200 rounded-md" />
-            ))}
-          </div>
-          
-          <div className="flex justify-between items-center mb-3">
-            <div className="flex items-center gap-2">
-              <Badge className="text-primary-foreground rounded-md text-[10px] px-1 py-0">
-                {creator.services[0]}
-              </Badge>
-              <span className="text-xs font-medium">From ${creator.price}</span>
+              
+              <CreatorRating rating={creator.rating} reviews={creator.reviews} name={creator.name} />
+              
+              <div className="flex justify-center px-3 sm:px-4">
+                <ShimmerButton 
+                  onClick={() => setShowEmailDialog(true)}
+                >
+                  <span>Join Waitlist</span>
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white/90" />
+                </ShimmerButton>
+              </div>
             </div>
-            <Badge
-              variant="secondary"
-              className="bg-green-500/20 text-green-700 rounded-md text-[10px] px-1 py-0"
-            >
-              Available Now
-            </Badge>
           </div>
-          
-          <div className="flex gap-2">
-            <Button size="sm" variant="outline" className="flex-1 rounded-md text-xs py-1 h-8">
-              View Profile
-            </Button>
-            <Button 
-              size="sm" 
-              className="flex-1 rounded-md text-xs py-1 h-8"
-              onClick={() => setShowEmailDialog(true)}
-            >
-              Invite
-            </Button>
-          </div>
-        </CardContent>
+        </div>
       </Card>
       <GlowDialog open={showEmailDialog} onOpenChange={setShowEmailDialog} />
     </div>
