@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { Hero } from '../components/Hero';
@@ -68,10 +67,12 @@ const Index = () => {
           </Banner>
         </div>}
 
-      <main className="flex-1 pb-12 sm:pb-16">
+      <main className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
         {/* Hero Section */}
-        <Spotlight className="from-purple-500/20 via-violet-500/20 to-blue-500/20" size={400} />
-        <Hero />
+        <div className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
+          <Spotlight className="from-purple-500/20 via-violet-500/20 to-blue-500/20" size={400} />
+          <Hero />
+        </div>
 
         {/* Test Section */}
         <div className="relative py-6 sm:py-8 lg:py-10 overflow-hidden">
