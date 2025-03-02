@@ -1,10 +1,20 @@
+
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-
-import { Grainify } from "@/components/grainify";
 import { Button } from "@/components/ui/button";
+
+// Create a Grainify component since it's missing
+const Grainify = ({ className }: { className?: string }) => {
+  return (
+    <div 
+      className={`pointer-events-none absolute inset-0 opacity-20 ${className || ''}`}
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+      }}
+    />
+  );
+};
 
 export function Section() {
   return (
@@ -18,29 +28,29 @@ export function Section() {
         whileHover={{}}
         className="absolute -z-[1]"
       >
-        <Image alt="Image" src="/images/SphereExtruded1R.png" width={500} height={500} />
+        <img alt="Image" src="/images/SphereExtruded1R.png" width={500} height={500} />
       </motion.div>
       <div className="flex justify-between items-center">
-        <Image
+        <img
           alt="Image"
           src="/images/reweb-logo.png"
           width={500}
           height={500}
           className="size-12 rounded-full"
         />
-        <Button className="rounded-full">Start now&lt;br&gt;</Button>
+        <Button className="rounded-full">Start now</Button>
       </div>
       <div className="flex flex-col items-center gap-y-8">
         <h2 className="font-heading font-semibold tracking-tight text-balance sm:text-8xl text-center text-5xl">
-          Supercharge &lt;br&gt;your copy
+          Supercharge <br/>your copy
         </h2>
         <h1 className="text-center text-pretty text-lg max-w-md">
           Turn every sentence into a conversion magnet. Writerly AI refines and optimizes your text
-          so you can capture your audience’s attention, drive engagement, and boost sales—without
+          so you can capture your audience's attention, drive engagement, and boost sales—without
           breaking a sweat.
         </h1>
       </div>
-      <Button className="rounded-full mx-auto">Start converting today&lt;br&gt;</Button>
+      <Button className="rounded-full mx-auto">Start converting today</Button>
     </section>
   );
 }
