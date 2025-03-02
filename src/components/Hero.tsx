@@ -1,9 +1,7 @@
-
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import CallToAction from './CallToAction';
