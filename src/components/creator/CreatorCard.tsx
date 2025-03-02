@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardHeader, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
@@ -8,6 +9,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { CreatorRating } from './CreatorRating';
 import { GlowDialog } from '../ui/glow-dialog';
 import { ShimmerButton } from '../ui/shimmer-button';
+import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar';
 
 interface Creator {
   name: string;
@@ -118,12 +120,20 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
             
             <div className="absolute bottom-3 left-3 text-white select-text">
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-lg sm:text-xl">{creator.name}</h3>
-                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
-              </div>
-              <div className="flex items-center gap-1.5 mt-1">
-                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90" />
-                <span className="text-xs sm:text-sm text-white/90">{creator.location}</span>
+                <Avatar className="h-7 w-7 border border-white/20">
+                  <AvatarImage src={getImageSource()} alt={creator.name} />
+                  <AvatarFallback>{creator.name.substring(0, 2)}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="flex items-center gap-1">
+                    <h3 className="font-semibold text-lg sm:text-xl">{creator.name}</h3>
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+                  </div>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90" />
+                    <span className="text-xs sm:text-sm text-white/90">{creator.location}</span>
+                  </div>
+                </div>
               </div>
               <p className="text-xs sm:text-sm text-white/90 mt-1">
                 {creator.services.join(" • ")}
