@@ -128,8 +128,34 @@ export function Hero() {
         </p>
       </motion.div>
       
+      {/* Waitlist signup form */}
+      <div className="mx-auto w-full max-w-xl flex flex-col gap-6">
+        <div className="flex flex-col sm:flex-row w-full gap-3">
+          <input 
+            type="email" 
+            placeholder="Enter your email" 
+            className="flex-1 px-4 py-3 rounded-lg border border-gray-200 bg-white/90 text-gray-800" 
+          />
+          <button className="bg-primary text-white font-medium px-6 py-3 rounded-full flex items-center justify-center gap-2">
+            Get Early Access
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
+          <div className="flex -space-x-2">
+            <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-[10px] text-white border border-white">JT</div>
+            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white border border-white">KL</div>
+            <div className="w-6 h-6 rounded-full bg-amber-600 flex items-center justify-center text-[10px] text-white border border-white">AS</div>
+          </div>
+          <span>2,165+ people joined • Queue: 2-3 weeks</span>
+        </div>
+      </div>
+      
       {/* Call to action buttons */}
-      <div className="mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center">
+      <div className="mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center mt-6">
         <CallToAction type="primary" text="I Need Content" href="/property-manager" />
         <CallToAction type="primary" text="I Create Content" href="/creator" />
         <CallToAction type="secondary" text="Search Creators" href="/search" />
