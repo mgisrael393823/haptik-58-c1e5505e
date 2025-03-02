@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
-import CallToAction from './CallToAction';
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export function Hero() {
@@ -91,14 +90,16 @@ export function Hero() {
         className="relative z-50 container flex justify-center flex-1 flex-col px-6 sm:px-8 lg:px-10 gap-6 py-12 sm:py-16"
       >
         <div className="text-center">
-          <h1 className="font-anek text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-            <span className="block">Premium Content for</span>
-            <span className="block mt-3">Real Estate Excellence</span>
-          </h1>
-          
-          {/* Your animated title rotation */}
-          <div className="mt-6 text-center">
-            <span className="text-primary inline font-light">
+          <h1 className="tracking-tight leading-[1.1] text-center font-bold">
+            <span 
+              className={cn(
+                "text-primary inline font-light", 
+                "text-4xl sm:text-5xl lg:text-6xl", 
+                "tracking-[-0.02em]", 
+                "bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-black", 
+                "block sm:inline-block mb-2 sm:mb-0"
+              )}
+            >
               Property Content that
             </span>
             <span 
@@ -139,11 +140,10 @@ export function Hero() {
                 </motion.span>
               ))}
             </span>
-          </div>
+          </h1>
           
-          <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Connect with top-tier creators for photography, videography, and marketing content
-            that elevates your property portfolio.
+          <p className="mt-6 text-sm sm:text-lg lg:text-xl leading-[1.6] tracking-wide text-gray-700 text-center max-w-[650px] mx-auto px-4 sm:px-6 [word-spacing:0.12em] sm:[word-spacing:0.16em] relative z-10">
+            Connect with expert content creators for your next project. Our AI-powered platform matches you with the perfect professional for your needs and budget.
           </p>
           
           {/* Waitlist signup form */}
@@ -170,13 +170,6 @@ export function Hero() {
               </div>
               <span>2,165+ people joined • Queue: 2-3 weeks</span>
             </div>
-          </div>
-          
-          {/* Call to action buttons */}
-          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <CallToAction type="primary" text="I Need Content" href="/property-manager" />
-            <CallToAction type="primary" text="I Create Content" href="/creator" />
-            <CallToAction type="secondary" text="Search Creators" href="/search" />
           </div>
         </div>
       </motion.div>
