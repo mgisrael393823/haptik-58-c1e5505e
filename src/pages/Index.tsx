@@ -14,6 +14,8 @@ import { Spotlight } from '@/components/ui/spotlight';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { FeaturesSectionWithHoverEffects } from '@/components/Features';
 import Pricing from '@/components/Pricing';
+import { Section } from '@/components/Testsection';
+
 const Index = () => {
   const [showBanner, setShowBanner] = useState(true);
   const [showGlowDialog, setShowGlowDialog] = useState(false);
@@ -71,6 +73,14 @@ const Index = () => {
         <div className="relative overflow-hidden pt-4 sm:pt-6 py-0">
           <Spotlight className="from-purple-500/20 via-violet-500/20 to-blue-500/20" size={400} />
           <Hero />
+        </div>
+
+        {/* Test Section */}
+        <div className="relative py-6 sm:py-8 lg:py-10 overflow-hidden">
+          <Spotlight className="from-blue-500/20 via-purple-500/20 to-pink-500/20" size={350} />
+          <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
+            <Section />
+          </div>
         </div>
 
         <div className="space-y-4 sm:space-y-6 lg:space-y-8">
