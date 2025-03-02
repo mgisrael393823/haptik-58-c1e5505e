@@ -10,11 +10,11 @@ import { Banner } from '@/components/ui/banner';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
 import { GlowDialog } from '@/components/ui/glow-dialog';
-import { Spotlight } from '@/components/ui/spotlight';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { FeaturesSectionWithHoverEffects } from '@/components/Features';
 import Pricing from '@/components/Pricing';
 import { Section } from '@/components/Testsection';
+
 const Index = () => {
   const [showBanner, setShowBanner] = useState(true);
   const [showGlowDialog, setShowGlowDialog] = useState(false);
@@ -67,16 +67,14 @@ const Index = () => {
           </Banner>
         </div>}
 
-      <main className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
+      <main className="w-full flex flex-col">
         {/* Hero Section */}
-        <div className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
-          <Spotlight className="from-purple-500/20 via-violet-500/20 to-blue-500/20" size={400} />
+        <div className="w-full flex flex-col bg-white rounded-3xl sm:gap-y-16 gap-y-8 md:p-12 p-6">
           <Hero />
         </div>
 
         {/* Test Section */}
-        <div className="relative py-6 sm:py-8 lg:py-10 overflow-hidden">
-          <Spotlight className="from-blue-500/20 via-purple-500/20 to-pink-500/20" size={350} />
+        <div className="relative py-6 sm:py-8 lg:py-10">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
             <Section />
           </div>
@@ -85,31 +83,26 @@ const Index = () => {
         <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           {/* Featured Creators Section */}
           <div id="search" className="relative py-6 sm:py-8 lg:py-10 overflow-hidden">
-            <Spotlight className="from-emerald-500/20 via-teal-500/20 to-cyan-500/20" size={350} />
             <PreviewSearch />
           </div>
 
           {/* How It Works Section */}
           <div id="how-it-works" className="relative bg-gradient-to-b from-white via-gray-50 to-white py-6 sm:py-8 lg:py-10 overflow-hidden">
-            <Spotlight className="from-blue-500/20 via-cyan-500/20 to-teal-500/20" size={350} />
             <HowItWorksSection />
           </div>
 
           {/* Professional Content Creation Services */}
           <div className="relative py-6 sm:py-8 overflow-hidden lg:py-0">
-            <Spotlight className="from-emerald-500/20 via-teal-500/20 to-cyan-500/20" size={350} />
             <FeaturesSectionWithHoverEffects />
           </div>
 
           {/* Pricing Section */}
           <div id="pricing" className="relative py-6 sm:py-8 overflow-hidden lg:py-0">
-            <Spotlight className="from-indigo-500/20 via-purple-500/20 to-pink-500/20" size={350} />
             <Pricing />
           </div>
 
           {/* Final CTA Section */}
           <div className="relative py-6 sm:py-8 lg:py-10 overflow-hidden">
-            <Spotlight className="from-purple-500/20 via-pink-500/20 to-red-500/20" size={350} />
             <CallToActionSection />
           </div>
         </div>
