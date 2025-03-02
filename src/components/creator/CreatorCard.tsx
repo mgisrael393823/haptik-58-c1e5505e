@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardHeader, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
@@ -117,46 +118,51 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
             
-            <div className="absolute bottom-3 left-3 text-white select-text">
+            {/* Avatar and Creator Info - Optimized positioning */}
+            <div className="absolute left-4 top-4 text-white select-text">
               <div className="flex items-center gap-2">
                 <div className="relative">
-                  <Avatar className="h-7 w-7 border border-white/20">
+                  <Avatar className="h-10 w-10 border border-white/90 overflow-hidden">
                     <AvatarImage src={getImageSource()} alt={creator.name} />
                     <AvatarFallback>{creator.name.substring(0, 2)}</AvatarFallback>
                   </Avatar>
-                  <span className="absolute -end-1 -top-1">
+                  {/* Verification Badge - Optimized */}
+                  <span className="absolute -bottom-1 -right-1" aria-label="Verified Creator">
                     <span className="sr-only">Verified</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="14"
+                      width="16"
+                      height="16"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
+                      className="drop-shadow-sm"
                     >
                       <path
                         className="fill-background"
                         d="M3.046 8.277A4.402 4.402 0 0 1 8.303 3.03a4.4 4.4 0 0 1 7.411 0 4.397 4.397 0 0 1 5.19 3.068c.207.713.23 1.466.067 2.19a4.4 4.4 0 0 1 0 7.415 4.403 4.403 0 0 1-3.06 5.187 4.398 4.398 0 0 1-2.186.072 4.398 4.398 0 0 1-7.422 0 4.398 4.398 0 0 1-5.257-5.248 4.4 4.4 0 0 1 0-7.437Z"
                       />
                       <path
-                        className="fill-blue-500"
+                        className="fill-[#2B6CB0]"
                         d="M4.674 8.954a3.602 3.602 0 0 1 4.301-4.293 3.6 3.6 0 0 1 6.064 0 3.598 3.598 0 0 1 4.3 4.302 3.6 3.6 0 0 1 0 6.067 3.6 3.6 0 0 1-4.29 4.302 3.6 3.6 0 0 1-6.074 0 3.598 3.598 0 0 1-4.3-4.293 3.6 3.6 0 0 1 0-6.085Z"
+                        stroke="white"
+                        strokeWidth="1.5"
                       />
                       <path
-                        className="fill-background"
+                        className="fill-white"
                         d="M15.707 9.293a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L11 12.586l3.293-3.293a1 1 0 0 1 1.414 0Z"
                       />
                     </svg>
                   </span>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg sm:text-xl">{creator.name}</h3>
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90" />
-                    <span className="text-xs sm:text-sm text-white/90">{creator.location}</span>
+                <div className="flex flex-col justify-center ml-2">
+                  <h3 className="font-semibold text-base sm:text-lg leading-tight">{creator.name}</h3>
+                  <div className="flex items-center gap-1 mt-0.5">
+                    <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90" />
+                    <span className="text-xs text-white/90 leading-tight">{creator.location}</span>
                   </div>
                 </div>
               </div>
-              <p className="text-xs sm:text-sm text-white/90 mt-1">
+              <p className="text-xs sm:text-sm text-white/90 mt-1.5 pl-12">
                 {creator.services.join(" • ")}
               </p>
             </div>
