@@ -15,7 +15,6 @@ import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { FeaturesSectionWithHoverEffects } from '@/components/Features';
 import Pricing from '@/components/Pricing';
 import { Section } from '@/components/Testsection';
-
 const Index = () => {
   const [showBanner, setShowBanner] = useState(true);
   const [showGlowDialog, setShowGlowDialog] = useState(false);
@@ -70,7 +69,7 @@ const Index = () => {
 
       <main className="flex-1 pb-12 sm:pb-16">
         {/* Hero Section */}
-        <div className="relative overflow-hidden pt-4 sm:pt-6 py-0">
+        <div className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
           <Spotlight className="from-purple-500/20 via-violet-500/20 to-blue-500/20" size={400} />
           <Hero />
         </div>
