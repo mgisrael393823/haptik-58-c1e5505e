@@ -1,12 +1,14 @@
+"use client";
 
-import React from 'react';
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import CallToAction from './CallToAction';
+import { useIsMobile } from "@/hooks/use-mobile";
 
-// This component is adapted from the template's Grainify component
+// Grainify component from template
 function Grainify({ className }) {
   return (
     <div className={cn("inset-0 absolute pointer-events-none", className)}>
@@ -15,49 +17,113 @@ function Grainify({ className }) {
   );
 }
 
-const HeroSection = () => {
+export function Hero() {
+  const [titleNumber, setTitleNumber] = useState(0);
+  const isMobile = useIsMobile();
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
+  
+  const titles = useMemo(() => ["Converts", "Engages", "Drives Leads"], []);
+  
+  useEffect(() => {
+    if (!isInView) return;
+    
+    const timeout = isMobile ? 2500 : 2000;
+    const timeoutId = setTimeout(() => {
+      if (titleNumber === titles.length - 1) {
+        setTitleNumber(0);
+      } else {
+        setTitleNumber(titleNumber + 1);
+      }
+    }, timeout);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber, titles.length, isMobile, isInView]);
+  
   return (
-    <section className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
-      {/* Grain texture overlay */}
+    <section 
+      ref={sectionRef}
+      className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6"
+    >
+      {/* Grain texture overlay from template */}
       <Grainify className="opacity-25" />
       
-      {/* Grid pattern background */}
+      {/* Grid pattern background from template */}
       <div className="bg-[rgba(255,255,255,0)] bg-[linear-gradient(#eaeaea_1.2px,_transparent_1.2px),_linear-gradient(to_right,_#eaeaea_1.2px,_rgba(255,255,255,0)_1.2px)] bg-[length:24px_24px] absolute inset-0 rounded-3xl -z-[1] opacity-10 [clip-path:circle(40%)]" />
       
-      {/* Animated visual element */}
+      {/* Decorative element from template */}
       <motion.div
         animate={{ x: 0 }}
         initial={{ x: 150 }}
         transition={{ ease: "easeOut", type: "spring", duration: 2 }}
         className="absolute -z-[1]"
       >
-        {/* Replace with your own image or decorative element */}
+        {/* You can replace this with an actual image or keep your animation effects */}
         <div className="h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
       </motion.div>
       
-      {/* Header area with logo and CTA */}
+      {/* Header with logo and button from template structure */}
       <div className="flex justify-between items-center">
-        {/* Replace with your logo */}
         <div className="size-12 rounded-full bg-background flex items-center justify-center">
           <span className="font-bold text-primary">RE</span>
         </div>
         <Button className="rounded-full">Search Creators</Button>
       </div>
       
-      {/* Main content area */}
+      {/* Main content with your animated titles */}
       <motion.div 
         initial={{ y: 100, opacity: 0.5 }}
-        viewport={{ once: true }}
+        animate={isInView ? { y: 0, opacity: 1 } : {}}
         transition={{ ease: "easeInOut", delay: 0.3, duration: 0.8 }}
-        whileInView={{ y: 0, opacity: 1 }}
         className="flex flex-col items-center gap-y-8"
       >
-        <h2 className="font-heading font-semibold tracking-tight text-balance sm:text-8xl text-center text-5xl">
-          <span className="block">Premium Content for</span>
-          <span className="block">Real Estate Excellence</span>
+        <h2 className="font-heading font-semibold tracking-tight text-balance sm:text-7xl text-center text-5xl">
+          <span className="text-primary inline font-light block sm:inline-block mb-2 sm:mb-0">
+            Property Content that
+          </span>
+          
+          {/* Your animated title rotation */}
+          <span 
+            role="text" 
+            aria-label={`Property Content that ${titles[titleNumber]}`} 
+            className="relative flex w-full justify-center h-[1.6em] sm:h-[1.8em] md:h-[1.6em] lg:h-[1.4em] overflow-hidden mt-2 sm:mt-3"
+          >
+            {titles.map((title, index) => (
+              <motion.span 
+                key={index} 
+                className={cn(
+                  "absolute font-playfair tracking-[-0.02em] bg-clip-text text-transparent", 
+                  "bg-gradient-to-r from-purple-700 via-blue-700 to-cyan-700", 
+                  titleNumber === index && "text-5xl sm:text-6xl lg:text-7xl"
+                )} 
+                initial={{
+                  opacity: 0,
+                  y: isMobile ? 15 : 40,
+                  scale: 0.95
+                }} 
+                animate={titleNumber === index ? {
+                  y: 0,
+                  opacity: 1,
+                  scale: 1
+                } : {
+                  y: titleNumber > index ? isMobile ? -15 : -40 : isMobile ? 15 : 40,
+                  opacity: 0,
+                  scale: 0.95
+                }} 
+                transition={{
+                  type: "spring",
+                  stiffness: isMobile ? 160 : 120,
+                  damping: isMobile ? 22 : 17,
+                  mass: isMobile ? 0.8 : 1
+                }}
+              >
+                {title}
+              </motion.span>
+            ))}
+          </span>
         </h2>
+        
         <p className="text-center text-pretty text-lg max-w-md">
-          Connect with top-tier creators for photography, videography, and marketing content
+          Connect with expert content creators for photography, videography, and marketing content
           that elevates your property portfolio.
         </p>
       </motion.div>
@@ -70,6 +136,6 @@ const HeroSection = () => {
       </div>
     </section>
   );
-};
+}
 
-export default HeroSection;
+export default Hero;
