@@ -42,7 +42,7 @@ export function Hero() {
   return (
     <section 
       ref={sectionRef}
-      className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6"
+      className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-12 gap-y-8 md:p-12 p-6"
     >
       {/* Grain texture overlay from template */}
       <Grainify className="opacity-25" />
@@ -129,7 +129,7 @@ export function Hero() {
       </motion.div>
       
       {/* Waitlist signup form */}
-      <div className="mx-auto w-full max-w-xl flex flex-col gap-6">
+      <div className="mx-auto w-full max-w-xl mt-6">
         <div className="flex flex-col sm:flex-row w-full gap-3">
           <input 
             type="email" 
@@ -144,7 +144,7 @@ export function Hero() {
           </button>
         </div>
         
-        <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
+        <div className="flex items-center justify-center gap-2 text-sm text-gray-600 mt-4">
           <div className="flex -space-x-2">
             <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-[10px] text-white border border-white">JT</div>
             <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white border border-white">KL</div>
@@ -155,7 +155,7 @@ export function Hero() {
       </div>
       
       {/* Call to action buttons */}
-      <div className="mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center mt-6">
+      <div className="mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center mt-8">
         <CallToAction type="primary" text="I Need Content" href="/property-manager" />
         <CallToAction type="primary" text="I Create Content" href="/creator" />
         <CallToAction type="secondary" text="Search Creators" href="/search" />
