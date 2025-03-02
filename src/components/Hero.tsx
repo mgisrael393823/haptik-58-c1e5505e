@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
@@ -7,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import CallToAction from './CallToAction';
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Spotlight } from "@/components/ui/spotlight";
 
 // Grainify component from template
 function Grainify({ className }) {
@@ -44,6 +46,8 @@ export function Hero() {
       ref={sectionRef}
       className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-12 gap-y-8 md:p-12 p-6"
     >
+      <Spotlight className="from-purple-500/20 via-violet-500/20 to-blue-500/20" size={400} />
+      
       {/* Grain texture overlay from template */}
       <Grainify className="opacity-25" />
       
