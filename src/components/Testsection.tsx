@@ -18,9 +18,8 @@ const Grainify = ({ className }: { className?: string }) => {
 
 export function Section() {
   return (
-    <section className="w-full flex flex-col rounded-3xl bg-accent text-accent-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
-      <Grainify className="opacity-25" />
-      <div className="bg-[rgba(255,255,255,0)] bg-[linear-gradient(#eaeaea_1.2px,_transparent_1.2px),_linear-gradient(to_right,_#eaeaea_1.2px,_rgba(255,255,255,0)_1.2px)] bg-[length:24px_24px] absolute inset-0 rounded-3xl -z-[1] opacity-10 [clip-path:circle(40%)]" />
+    <section className="w-full flex flex-col rounded-3xl bg-white text-foreground relative isolate overflow-hidden sm:gap-y-16 gap-y-8 md:p-12 p-6">
+      {/* Remove Grainify and background grid pattern */}
       <motion.div
         animate={{ x: 0 }}
         initial={{ x: 150 }}
