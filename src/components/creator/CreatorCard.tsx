@@ -116,9 +116,10 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
               onError={handleImageError}
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
+            {/* Enhanced gradient overlay with increased opacity and better coverage */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pointer-events-none" />
             
-            {/* Avatar and Creator Info - Optimized positioning */}
+            {/* Avatar and Creator Info - Enhanced text styling */}
             <div className="absolute left-4 top-4 text-white select-text">
               <div className="flex items-center gap-2">
                 <div className="relative">
@@ -126,7 +127,7 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
                     <AvatarImage src={getImageSource()} alt={creator.name} />
                     <AvatarFallback>{creator.name.substring(0, 2)}</AvatarFallback>
                   </Avatar>
-                  {/* Verification Badge - Optimized */}
+                  {/* Verification Badge */}
                   <span className="absolute -bottom-1 -right-1" aria-label="Verified Creator">
                     <span className="sr-only">Verified</span>
                     <svg
@@ -155,14 +156,16 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
                   </span>
                 </div>
                 <div className="flex flex-col justify-center ml-2">
-                  <h3 className="font-semibold text-base sm:text-lg leading-tight">{creator.name}</h3>
+                  {/* Enhanced text with shadow and increased weight */}
+                  <h3 className="font-semibold text-base sm:text-lg leading-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">{creator.name}</h3>
                   <div className="flex items-center gap-1 mt-0.5">
-                    <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90" />
-                    <span className="text-xs text-white/90 leading-tight">{creator.location}</span>
+                    <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]" />
+                    <span className="text-xs text-white leading-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">{creator.location}</span>
                   </div>
                 </div>
               </div>
-              <p className="text-xs sm:text-sm text-white/90 mt-1.5 pl-12">
+              {/* Enhanced services text */}
+              <p className="text-xs sm:text-sm text-white mt-1.5 pl-12 font-medium drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
                 {creator.services.join(" • ")}
               </p>
             </div>
